@@ -1,24 +1,20 @@
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
-import {
-  MapPin,
-  ArrowLeft,
-  Loader2,
-} from "lucide-react";
+import { MapPin, ArrowLeft, Loader2 } from "lucide-react";
 import { useParking } from "../hooks/useParkings";
 import { useAuth } from "../../auth/context/AuthContext";
 import { bookingService } from "../../bookings/services/booking.service";
 import { Button } from "../../../components/ui/Button";
 
-  import { useVehicles } from "../../vehicles/hooks/useVehicles";
+import { useVehicles } from "../../vehicles/hooks/useVehicles";
 
-  export const ParkingDetailPage = () => {
+export const ParkingDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
 
   const { user, isAuthenticated } = useAuth();
-  
+
   const {
     data: parking,
     isLoading: isLoadingParking,
@@ -43,7 +39,7 @@ import { Button } from "../../../components/ui/Button";
       return;
     }
 
-    const vehicleId = (vehicles && vehicles.length > 0) ? vehicles[0].id : null;
+    const vehicleId = vehicles && vehicles.length > 0 ? vehicles[0].id : null;
 
     const newBooking = {
       parkingId: parking.id,
@@ -58,17 +54,14 @@ import { Button } from "../../../components/ui/Button";
   if (isLoadingParking)
     return (
       <div className="flex justify-center items-center min-h-[50vh]">
-        <Loader2 className="w-8 h-8 animate-spin text-[var(--color-primary)]" />
+        <Loader2 className="w-8 h-8 animate-spin text-(--color-primary)" />
       </div>
     );
   if (isError)
     return (
       <div className="flex flex-col items-center justify-center min-h-[50vh] text-center">
         <p className="text-text-danger text-lg mb-4">Parking not found.</p>
-         <Button
-           variant="outline"
-           onClick={() => navigate("/explore")}
-        >
+        <Button variant="outline" onClick={() => navigate("/explore")}>
           Go Back to Explore
         </Button>
       </div>

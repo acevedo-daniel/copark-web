@@ -28,7 +28,7 @@ export const RegisterPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-gray-100 to-gray-300">
+    <div className="flex flex-col items-center justify-center h-screen bg-linear-to-br from-gray-100 to-gray-300">
       <div className="bg-bg-surface p-8 rounded shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center text-text-primary">
           Create Account
@@ -39,7 +39,6 @@ export const RegisterPage = () => {
           </div>
         )}
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Nombre */}
           <div>
             <label className="block text-sm font-medium text-text-secondary">
               Name
@@ -53,7 +52,6 @@ export const RegisterPage = () => {
               onChange={handleChange}
             />
           </div>
-          {/* Email */}
           <div>
             <label className="block text-sm font-medium text-text-secondary">
               Email
@@ -67,7 +65,6 @@ export const RegisterPage = () => {
               onChange={handleChange}
             />
           </div>
-          {/* Teléfono */}
           <div>
             <label className="block text-sm font-medium text-text-secondary">
               Phone
@@ -80,7 +77,6 @@ export const RegisterPage = () => {
               onChange={handleChange}
             />
           </div>
-          {/* Password */}
           <div>
             <label className="block text-sm font-medium text-text-secondary">
               Password

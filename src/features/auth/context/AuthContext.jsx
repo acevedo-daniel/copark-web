@@ -26,10 +26,10 @@ export function AuthProvider({ children }) {
   };
 
   const logout = () => {
+    localStorage.removeItem("copark_user");
+    localStorage.removeItem("token");
     setUser(null);
     setIsAuthenticated(false);
-    localStorage.removeItem("copark_user");
-    localStorage.removeItem("token"); 
     queryClient.clear();
   };
 

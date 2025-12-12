@@ -10,7 +10,6 @@ export const DashboardPage = () => {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
-      {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <div>
           <h1 className="text-3xl font-bold text-text-primary">
@@ -22,7 +21,6 @@ export const DashboardPage = () => {
         </div>
       </div>
 
-      {/* Loading State */}
       {isLoading && (
         <div className="space-y-4">
           {[1, 2].map((i) => (
@@ -34,7 +32,6 @@ export const DashboardPage = () => {
         </div>
       )}
 
-      {/* Bookings List */}
       {!isLoading && !isError && (
         <div className="space-y-6">
           <h2 className="text-xl font-semibold mb-4 text-text-primary">
@@ -57,7 +54,6 @@ export const DashboardPage = () => {
                 className="bg-bg-surface border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow"
               >
                 <div className="flex flex-col md:flex-row justify-between md:items-center gap-4">
-                  {/* Main Info */}
                   <div>
                     <div className="flex items-center gap-2 mb-2">
                       <span
@@ -83,7 +79,6 @@ export const DashboardPage = () => {
                     </div>
                   </div>
 
-                  {/* Price and Actions */}
                   <div className="text-right">
                     <p className="text-sm text-text-secondary">Total paid</p>
                     <p className="text-2xl font-bold text-text-primary">

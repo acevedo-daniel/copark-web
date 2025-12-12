@@ -14,7 +14,6 @@ import { ParkingDetailPage } from "../../features/parkings/pages/ParkingDetailPa
 export const AppRouter = () => {
   return (
     <Routes>
-      {/* Main Layout */}
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route
@@ -28,7 +27,6 @@ export const AppRouter = () => {
         <Route path="/parkings" element={<ExplorePage />} />
         <Route path="/parkings/:id" element={<ParkingDetailPage />} />
       </Route>
-      {/* Standalone */}
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
 

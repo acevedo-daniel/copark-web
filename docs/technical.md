@@ -1,87 +1,30 @@
-# Technical Documentation - CoPark Web
+# CoPark Web - Technical Overview 💻
 
-## Overview
-CoPark Web is the user interface for the "CoPark" parking reservation platform. It is built as a modern Single Page Application (SPA), focused on speed, usability, and a premium visual design.
-
-## Core Technologies
-
-*   **Core:** React 19 (Hooks, Functional Components)
-*   **Build System:** Vite 7 (Hot Module Replacement, Fast Builds)
-*   **Styling:** Tailwind CSS v4 (Utility-first CSS)
-*   **Routing:** React Router v7
-*   **State Management (Server State):** TanStack Query v5
-*   **HTTP Client:** Axios
-*   **Form Management:** React Hook Form (if applicable) / Local State
-*   **Icons:** Lucide React
-
-## Project Structure
-
-The project follows a **Feature-based** architecture, allowing the code to scale while keeping it organized.
+## 1. Architecture: Feature-Based
+We structure the app by **domain features** rather than technical layers.
 
 ```
-src/
-├── app/                 # Global app configuration
-│   └── routes/          # Route definitions and protections (AppRouter, ProtectedRoute)
-├── components/          # Shared reusable components
-│   ├── layout/          # Main layouts (MainLayout, AuthLayout)
-│   └── ui/              # Atomic UI components (Button, Input, Card)
-├── features/            # Main business modules
-│   ├── auth/            # Authentication (Login, Register, Context)
-│   ├── bookings/        # Booking management
-│   └── parkings/        # Parking exploration and management
-├── lib/                 # External library configurations (axios, etc.)
-├── pages/               # High-level pages (HomePage, NotFound)
-└── styles/              # Global styles (index.css, theme)
+src/features/
+├── auth/       # Login, Register, AuthContext
+├── bookings/   # Booking logic, hooks, service
+└── parkings/   # Dashboard, Explore, Details
 ```
 
-## Main Modules (Features)
+This ensures that if we remove a feature (e.g., "Bookings"), we just delete one folder.
 
-### 1. Auth (`features/auth`)
-Handles everything related to user identity.
-*   **Context:** `AuthContext` provides the current user and `login`/`logout` methods to the entire app.
-*   **Storage:** The JWT token is stored in `localStorage` for basic persistence.
-*   **Security:** Axios interceptors automatically inject the token into every request.
+## 2. State Management Strategy
+*   **Server State**: Managed by **TanStack Query (React Query)**.
+    *   *Why?* It handles caching, loading states, and deduplication of API requests automatically.
+*   **Client State**: Managed by **Context API** (`AuthContext`) for global session data (User, Token).
+*   **Form State**: Local `useState` for simple forms.
 
-### 2. Parkings (`features/parkings`)
-The core of the user experience.
-*   **Dashboard:** Main view for the logged-in user.
-*   **Explore:** Map or list to search for available parking spots.
-*   **Detail:** Individual view of a parking spot.
+## 3. Design System
+*   **Engine**: Tailwind CSS v4.
+*   **Theming**: CSS Variables defined in `global.css` (`--color-primary`, `--font-sans`).
+*   **Typography**: Uses **Outfit** (Headings) and **Inter** (Body) via Google Fonts.
 
-### 3. Bookings (`features/bookings`)
-Management of the booking lifecycle.
-*   **Services:** Communication layer with the API to create and list bookings.
-*   **Hooks:** Custom hooks (e.g., `useBookings`) that encapsulate React Query for handling loading and error states.
-
-## Configuration and Environment Variables
-
-The project uses `.env` for configuration. Variables must start with `VITE_` to be exposed to the client.
-
-| Variable | Description |
-| :--- | :--- |
-| `VITE_API_URL` | Base URL of the backend API (e.g., `http://localhost:3001` or production URL). |
-
-## Style Guide and Theme
-
-The design uses a system of native CSS variables combined with Tailwind to support themes (Dark/Light) and maintain consistency.
-
-*   **Color Palette:** Defined in `src/index.css` under `:root`.
-*   **Typography:** Modern sans-serif fonts for a clean look.
-*   **UI Components:** The components in `src/components/ui` are the source of truth for buttons, inputs, etc., ensuring the entire app looks coherent.
-
-## State and Data Fetching
-
-**TanStack Query** is used for asynchronous state management (server data). This offers advantages such as:
-*   Automatic caching.
-*   Background revalidation.
-*   Simplified handling of `isLoading` and `isError` states.
-
-## Deployment
-
-The project is static after the build, so it can be deployed on any static hosting service (Vercel, Netlify, Render Static Site).
-
-Build command:
-```bash
-npm run build
-```
-This generates the `dist/` folder optimized for production.
+## 4. Key Integration Points
+*   **`lib/api.js`**: Central Axios instance with Interceptors.
+    *   *Request Interceptor*: Injects `Authorization: Bearer <token>` automatically.
+    *   *Response Interceptor*: Detects `401 Unauthorized` responses.
+*   **Services**: Each feature has a `service` file (e.g., `booking.service.js`) that wraps API calls. **Mocks have been removed** in favor of real endpoints.

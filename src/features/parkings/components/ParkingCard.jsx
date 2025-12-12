@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MapPin, Star } from "lucide-react"; // Iconos
+import { MapPin, Star } from "lucide-react";
 
 export const ParkingCard = ({ parking }) => {
   return (

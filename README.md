@@ -1,79 +1,82 @@
 # CoPark Web 🚗
 
-> **Modern Parking Management Platform** - Frontend Application.
+> **Modern Frontend for CoPark Parking Management Platform**
 
-CoPark Web is the client interface for the CoPark platform. Designed to offer a fluid, fast, and visually appealing user experience, allowing users to find, reserve, and manage parking spots with ease.
+**CoPark Web** is the client-side application designed to offer a premium, seamless user experience. It consumes the CoPark API to allow users to find parking spots, manage their vehicles, and book reservations in real-time.
 
 ---
 
 ## ✨ Key Features
 
-*   **Premium UI/UX:** Clean and modern interface built with Tailwind CSS, focused on usability.
-*   **Real-time Booking:** Optimized booking flow with instant validation.
-*   **Session Management:** Secure JWT authentication with automatic session handling.
-*   **Personal Dashboard:** Control panel for users to view detailed history of active and past bookings.
-*   **Responsive:** Fully adapted for mobile, tablet, and desktop devices.
+*   **Premium UI/UX**: Built with **Tailwind CSS** using a modern, minimalist design system.
+*   **Feature-Based**: Modular architecture mirroring the API for consistent development.
+*   **Real-Time Feedback**: Instant loading states (Skeletons) and error handling via **TanStack Query**.
+*   **Responsive Design**: Fully optimized mobile-first navigation and layout.
+*   **Smart Auth**: persistent session management with automatic redirects.
 
 ## 🛠️ Tech Stack
 
-This project uses the most modern technologies in the React ecosystem:
+*   **Core**: React 19 + Vite
+*   **State Management**: TanStack Query (React Query)
+*   **Routing**: React Router v7
+*   **Styling**: Tailwind CSS v4 + Lucide React Icons
+*   **HTTP Client**: Axios with Interceptors
 
-*   **React 19** - UI Library.
-*   **Vite** - Blazing fast development environment.
-*   **Tailwind CSS 4** - Utility-first CSS framework.
-*   **TanStack Query** - Asynchronous state management and data caching.
-*   **React Router v7** - Dynamic routing.
-*   **Axios** - Robust HTTP client.
-
-## 🚀 Getting Started
-
-Follow these steps to run the project in your local environment.
+## ⚡ Getting Started
 
 ### Prerequisites
-
-*   Node.js (v18 or higher recommended)
+*   Node.js v18+
 *   npm or yarn
+*   Running instance of CoPark API (on port 3000 recommended)
 
 ### Installation
 
-1.  **Clone the repository:**
+1.  **Clone the repository**
     ```bash
     git clone https://github.com/your-username/copark.git
     cd copark/copark-web
     ```
 
-2.  **Install dependencies:**
+2.  **Install dependencies**
     ```bash
     npm install
     ```
 
-3.  **Configure Environment Variables:**
-    Create a `.env` file in the root of `copark-web` based on the example:
+3.  **Configure Environment**
+    Create a `.env` file in the root directory:
     ```env
-    VITE_API_URL=http://localhost:3001
+    # Points to your local or production API
+    VITE_API_URL=http://localhost:3000
     ```
 
-4.  **Start the development server:**
+4.  **Run the Application**
     ```bash
     npm run dev
     ```
-    The application will be available at `http://localhost:5173`.
+    Access the app at `http://localhost:5173`.
 
-## 📦 Available Scripts
+## 📂 Project Structure
+
+The project is organized by **Features** to facilitate scalability:
+
+```
+src/
+├── components/    # Reusable UI Components (Buttons, Navbar)
+├── features/      # Logic and Views by Feature
+│   ├── auth/      # Login/Register Pages & Context
+│   ├── bookings/  # Booking Hooks & History
+│   ├── parkings/  # Parking Discovery & Details
+│   └── vehicles/  # Vehicle Hooks
+├── styles/        # Global CSS & Theme Tokens
+└── lib/           # API Configuration (Axios)
+```
+
+## 📜 Available Scripts
 
 *   `npm run dev`: Starts the development server.
 *   `npm run build`: Compiles the application for production.
 *   `npm run preview`: Previews the production build locally.
-*   `npm run lint`: Runs the linter to find code errors.
-
-## 📁 Project Structure
-
-The code is organized by **Features** to facilitate scalability:
-
-*   `src/features/auth`: Login, Registration, and Session Logic.
-*   `src/features/parkings`: Parking search and visualization.
-*   `src/features/bookings`: Booking creation and listing.
-*   `src/components/ui`: Reusable base components (Buttons, Inputs).
+*   `npm run lint`: Runs ESLint to verify code quality.
 
 ---
-*Developed by Daniel. Open for collaboration and improvements.*
+*Developed by Daniel for CoPark Platform.*

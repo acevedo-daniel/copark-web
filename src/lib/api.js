@@ -9,7 +9,8 @@ export const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token");
+    const storedUser = localStorage.getItem("copark_user");
+    const token = storedUser ? JSON.parse(storedUser).token : null;
 
     if (token) {
       config.headers = config.headers ?? {};

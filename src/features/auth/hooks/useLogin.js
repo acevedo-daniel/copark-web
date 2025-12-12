@@ -15,7 +15,7 @@ export const useLogin = () => {
       const userToStore = data.user || data;
       loginToContext(userToStore);
 
-      console.log("Login exitoso");
+
     },
 
     onError: (error) => {

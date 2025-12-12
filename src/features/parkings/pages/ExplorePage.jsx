@@ -11,7 +11,7 @@ export const ExplorePage = () => {
         {[1, 2, 3].map((i) => (
           <div
             key={i}
-            className="h-80 bg-[var(--color-bg-muted)] rounded-xl animate-pulse"
+            className="h-80 bg-bg-muted rounded-xl animate-pulse"
           ></div>
         ))}
       </div>
@@ -20,8 +20,14 @@ export const ExplorePage = () => {
 
   if (isError) {
     return (
-      <div className="text-center py-12 text-[var(--color-text-danger)]">
-        Error loading parkings. Please try again.
+      <div className="flex flex-col items-center justify-center py-20 text-center">
+        <p className="text-text-danger text-lg mb-4">Error loading parkings.</p>
+        <button 
+           onClick={() => window.location.reload()}
+           className="px-4 py-2 bg-[var(--color-bg-surface)] border border-[var(--color-border)] rounded-md hover:bg-[var(--color-bg-muted)] transition-colors text-text-secondary"
+        >
+          Try Again
+        </button>
       </div>
     );
   }
@@ -29,10 +35,8 @@ export const ExplorePage = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-[var(--color-text-primary)]">
-          Find your spot
-        </h1>
-        <p className="text-[var(--color-text-secondary)] mt-2">
+        <h1 className="text-3xl font-bold text-text-primary">Find your spot</h1>
+        <p className="text-text-secondary mt-2">
           Explore the best parking options for your vehicle.
         </p>
       </div>

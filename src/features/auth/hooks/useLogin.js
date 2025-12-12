@@ -9,11 +9,7 @@ export const useLogin = () => {
     mutationFn: authService.login,
 
     onSuccess: (data) => {
-      if (data.token) {
-        localStorage.setItem("token", data.token);
-      }
-      const userToStore = data.user || data;
-      loginToContext(userToStore);
+      loginToContext(data);
 
 
     },

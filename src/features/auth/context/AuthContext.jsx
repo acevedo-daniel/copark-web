@@ -29,7 +29,8 @@ export function AuthProvider({ children }) {
     setUser(null);
     setIsAuthenticated(false);
     localStorage.removeItem("copark_user");
-    queryClient.clear(); // Clear all cached data
+    localStorage.removeItem("token"); 
+    queryClient.clear();
   };
 
   return (

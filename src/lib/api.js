@@ -9,8 +9,22 @@ export const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    const storedUser = localStorage.getItem("copark_user");
-    const token = storedUser ? JSON.parse(storedUser).token : null;
+    // Intentar obtener el token de copark_user primero
+    let token = null;
+    try {
+      const storedUser = localStorage.getItem("copark_user");
+      if (storedUser) {
+        const parsedUser = JSON.parse(storedUser);
+        token = parsedUser?.token || null;
+      }
+    } catch (error) {
+      console.warn("Error parsing stored user:", error);
+    }
+
+    // Fallback: buscar token directamente (por compatibilidad)
+    if (!token) {
+      token = localStorage.getItem("token");
+    }
 
     if (token) {
       config.headers = config.headers ?? {};
@@ -29,6 +43,13 @@ api.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       console.warn("Session expired or invalid token.");
+      // Limpiar datos de autenticación inválidos
+      localStorage.removeItem("copark_user");
+      localStorage.removeItem("token");
+      // Redirigir al login si estamos en el navegador
+      if (typeof window !== "undefined" && window.location.pathname !== "/login") {
+        window.location.href = "/login";
+      }
     }
 
     return Promise.reject(error);

@@ -28,9 +28,6 @@ export const ParkingDetailPage = () => {
     onSuccess: () => {
       navigate("/dashboard");
     },
-    onError: (error) => {
-      alert("Error booking spot: " + error.message);
-    },
   });
 
   const handleReserve = () => {
@@ -103,6 +100,14 @@ export const ParkingDetailPage = () => {
                 ? "You are one click away from securing your spot."
                 : "You must sign in to book."}
             </p>
+
+            {bookingMutation.isError && (
+              <div className="bg-bg-danger text-text-danger p-3 rounded mb-4 text-sm">
+                {bookingMutation.error?.response?.data?.message || 
+                 bookingMutation.error?.message || 
+                 "Could not complete the reservation. Please try again."}
+              </div>
+            )}
 
             <Button
               onClick={handleReserve}

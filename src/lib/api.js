@@ -17,7 +17,6 @@ api.interceptors.request.use(
         token = parsedUser?.token || null;
       }
     } catch (error) {
-      console.warn("Error parsing stored user:", error);
     }
 
     if (!token) {
@@ -42,7 +41,6 @@ api.interceptors.response.use(
     const hasToken = localStorage.getItem("copark_user") || localStorage.getItem("token");
     
     if (error.response?.status === 401 && hasToken) {
-      console.warn("Session expired or invalid token.");
       localStorage.removeItem("copark_user");
       localStorage.removeItem("token");
       if (typeof window !== "undefined" && window.location.pathname !== "/login") {

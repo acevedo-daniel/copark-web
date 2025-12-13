@@ -14,8 +14,7 @@ export const useLogin = () => {
 
     },
 
-    onError: (error) => {
-      console.error("error en login:", error.message);
+    onError: () => {
     },
   });
 };

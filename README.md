@@ -2,81 +2,140 @@
 
 > **Modern Frontend for CoPark Parking Management Platform**
 
-**CoPark Web** is the client-side application designed to offer a premium, seamless user experience. It consumes the CoPark API to allow users to find parking spots, manage their vehicles, and book reservations in real-time.
+A React-based single-page application built with Vite, providing an intuitive interface for users to discover parking spots, manage reservations, and interact with the CoPark platform.
 
 ---
 
-## ✨ Key Features
+## ✨ Features
 
-*   **Premium UI/UX**: Built with **Tailwind CSS** using a modern, minimalist design system.
-*   **Feature-Based**: Modular architecture mirroring the API for consistent development.
-*   **Real-Time Feedback**: Instant loading states (Skeletons) and error handling via **TanStack Query**.
-*   **Responsive Design**: Fully optimized mobile-first navigation and layout.
-*   **Smart Auth**: persistent session management with automatic redirects.
+- **Modern UI/UX** - Clean, minimalist design with Tailwind CSS
+- **Feature-Based Architecture** - Modular structure matching the API
+- **Real-Time State Management** - TanStack Query for server state
+- **Responsive Design** - Mobile-first, fully responsive layout
+- **Form Validation** - Client-side validation with error feedback
+- **Protected Routes** - Authentication-based route protection
 
 ## 🛠️ Tech Stack
 
-*   **Core**: React 19 + Vite
-*   **State Management**: TanStack Query (React Query)
-*   **Routing**: React Router v7
-*   **Styling**: Tailwind CSS v4 + Lucide React Icons
-*   **HTTP Client**: Axios with Interceptors
+- **Framework**: React 19
+- **Build Tool**: Vite 7
+- **Routing**: React Router v7
+- **State Management**: TanStack Query (React Query)
+- **Styling**: Tailwind CSS v4
+- **HTTP Client**: Axios
+- **Icons**: Lucide React
 
-## ⚡ Getting Started
+## ⚡ Quick Start
 
 ### Prerequisites
-*   Node.js v18+
-*   npm or yarn
-*   Running instance of CoPark API (on port 3000 recommended)
+
+- Node.js v18 or higher
+- npm or yarn
+- Running CoPark API instance
 
 ### Installation
 
-1.  **Clone the repository**
-    ```bash
-    git clone https://github.com/your-username/copark.git
-    cd copark/copark-web
-    ```
+1. **Clone and navigate**
+   ```bash
+   git clone https://github.com/your-username/copark.git
+   cd copark/copark-web
+   ```
 
-2.  **Install dependencies**
-    ```bash
-    npm install
-    ```
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-3.  **Configure Environment**
-    Create a `.env` file in the root directory:
-    ```env
-    # Points to your local or production API
-    VITE_API_URL=http://localhost:3000
-    ```
+3. **Configure environment**
+   
+   Create a `.env` file in the root directory:
+   ```env
+   VITE_API_URL=http://localhost:3000
+   ```
 
-4.  **Run the Application**
-    ```bash
-    npm run dev
-    ```
-    Access the app at `http://localhost:5173`.
+4. **Run the application**
+   ```bash
+   npm run dev
+   ```
+
+The app will be available at `http://localhost:5173`
 
 ## 📂 Project Structure
 
-The project is organized by **Features** to facilitate scalability:
-
 ```
 src/
-├── components/    # Reusable UI Components (Buttons, Navbar)
-├── features/      # Logic and Views by Feature
-│   ├── auth/      # Login/Register Pages & Context
-│   ├── bookings/  # Booking Hooks & History
-│   ├── parkings/  # Parking Discovery & Details
-│   └── vehicles/  # Vehicle Hooks
-├── styles/        # Global CSS & Theme Tokens
-└── lib/           # API Configuration (Axios)
+├── app/             # App configuration and routes
+│   └── routes/      # Route definitions
+├── components/      # Reusable UI components
+│   ├── layout/      # Layout components (Navbar, MainLayout)
+│   └── ui/          # UI primitives (Button, etc.)
+├── features/        # Feature modules
+│   ├── auth/        # Authentication (login, register, context)
+│   ├── bookings/    # Booking management
+│   ├── parkings/    # Parking discovery and details
+│   └── vehicles/    # Vehicle management
+├── lib/             # Utilities and configurations
+│   ├── api.js       # Axios instance and interceptors
+│   └── utils.js     # Helper functions
+├── pages/           # Page components
+├── styles/          # Global styles and theme
+├── App.jsx          # Root component
+└── main.jsx         # Application entry point
 ```
 
 ## 📜 Available Scripts
 
-*   `npm run dev`: Starts the development server.
-*   `npm run build`: Compiles the application for production.
-*   `npm run preview`: Previews the production build locally.
-*   `npm run lint`: Runs ESLint to verify code quality.
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+## 🎨 Pages
+
+- `/` - Home page
+- `/login` - User login
+- `/register` - User registration
+- `/parkings` - Browse parking listings
+- `/parkings/:id` - Parking details and booking
+- `/dashboard` - User dashboard (protected)
+
+## 🔐 Authentication
+
+The app uses JWT tokens stored in localStorage. The authentication state is managed through React Context (`AuthContext`).
+
+Protected routes automatically redirect unauthenticated users to the login page.
+
+## 🎯 Key Features
+
+### State Management
+- **Server State**: TanStack Query handles API calls, caching, and loading states
+- **Client State**: React Context for authentication state
+- **Form State**: Local component state with validation
+
+### API Integration
+- Centralized Axios instance with interceptors
+- Automatic token injection in requests
+- Automatic logout on 401 responses
+
+### Form Validation
+- Client-side validation for login and registration
+- Real-time error feedback
+- Visual error indicators
+
+## 📝 Environment Variables
+
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `VITE_API_URL` | Backend API URL | Yes |
+
+## 🚀 Building for Production
+
+```bash
+npm run build
+```
+
+The production build will be in the `dist/` directory.
 
 ---
-*Developed by Daniel for CoPark Platform.*
+
+*Built with ❤️ for CoPark Platform*
